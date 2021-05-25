@@ -41,6 +41,7 @@ RUN sed -i s/\\\\//g /etc/php/7.3/apache2/conf.d/50-sqreen.ini
 RUN sed -i s/"allow_url_include = Off"/"allow_url_include = On"/ /etc/php/7.3/apache2/php.ini
 
 EXPOSE $PORT
+CMD gunicorn --bind 0.0.0.0:$PORT wsgi
 
 COPY main.sh /
 ENTRYPOINT ["/main.sh"]
