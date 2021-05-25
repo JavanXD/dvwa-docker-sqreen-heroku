@@ -40,14 +40,12 @@ RUN sed -i s/\\\\//g /etc/php/7.3/apache2/conf.d/50-sqreen.ini
 
 RUN sed -i s/"allow_url_include = Off"/"allow_url_include = On"/ /etc/php/7.3/apache2/php.ini
 
-
-
 EXPOSE $PORT
 CMD gunicorn --bind 0.0.0.0:$PORT wsgi
 
 COPY main.sh /
 #update apache port at runtime for Heroku
 ENTRYPOINT ["/main.sh"]
-CMD sed -i "s/80/$PORT/g" /etc/apache2/sites-enabled/000-default.conf /etc/apache2/ports.conf
+
 COPY ./apache-config/ports.conf /etc/apache2/ports.conf
-COPY ./apache-config/000-default.conf /etc/apache2/sites-available/000-default.conf    
+COPY ./apache-config/000-default.conf /etc/apache2/sites-available/000-default.conf

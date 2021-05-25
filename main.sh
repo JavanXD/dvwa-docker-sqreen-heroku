@@ -14,14 +14,13 @@ if [ -n "$SQREEN_URL" ]; then
 	sqreen-installer set_ini sqreen_url $SQREEN_URL
 fi
 
-chown -R mysql:mysql /var/lib/mysql /var/run/mysqld
-
 echo '[+] Starting mysql...'
 service mysql start
 
 echo '[+] Starting apache'
 sed -i "s/80/$PORT/g" /etc/apache2/sites-enabled/000-default.conf /etc/apache2/ports.conf
 service apache2 start
+rm /var/www/html/index.html
 
 while true
 do
