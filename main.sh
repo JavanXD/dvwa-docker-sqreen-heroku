@@ -19,8 +19,16 @@ fi
 echo '[+] Starting mysql...'
 service mysql start
 
+sudo mysql -u root -p
+USE mysql;
+UPDATE user SET plugin='mysql_native_password' WHERE User ='root';
+FLUSH PRIVILEGES;
+exit;
+service mysql restart
+
+
 echo '[+] Starting apache'
-apachectl -D FOREGROUND
+service apache2 start
 
 while true
 do
