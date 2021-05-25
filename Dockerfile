@@ -31,7 +31,7 @@ RUN chown www-data:www-data -R /var/www/html && \
 
 RUN service mysql start && \
     sleep 3 && \
-    mysql -u root -p vulnerables -e "CREATE USER app@localhost IDENTIFIED BY 'vulnerables';CREATE DATABASE dvwa;GRANT ALL privileges ON dvwa.* TO 'app'@localhost;"
+    mysql -uroot -pvulnerables -e "CREATE USER app@localhost IDENTIFIED BY 'vulnerables';CREATE DATABASE dvwa;GRANT ALL privileges ON dvwa.* TO 'app'@localhost;"
 
 RUN curl -s https://download.sqreen.com/php/install.sh > sqreen-install.sh && bash sqreen-install.sh 'org_123456789012345678901234567890123456789012345678901234567890' '${SQREEN_APP_NAME}'
 RUN sqreen-installer config '${SQREEN_TOKEN}' '${SQREEN_APP_NAME}'
