@@ -19,11 +19,7 @@ fi
 echo '[+] Starting mysql...'
 service mysql start
 
-sudo mysql -u root -p
-USE mysql;
-UPDATE user SET plugin='mysql_native_password' WHERE User ='root';
-FLUSH PRIVILEGES;
-exit;
+sudo mysql -u root -p -e "USE mysql;UPDATE user SET plugin='mysql_native_password' WHERE User ='root';FLUSH PRIVILEGES;exit;"
 service mysql restart
 
 
