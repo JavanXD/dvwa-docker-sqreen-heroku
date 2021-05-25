@@ -8,6 +8,15 @@ The aim of DVWA is to practice some of the most common web vulnerability, with v
 
 **WARNING** This image is vulnerable to several kinds of attacks, please don't deploy it to any public servers.
 
+## Payloads
+
+```
+Command injection: 8.8.8.8; echo true
+LFI: ../../../etc/pwd
+SQLi: %' or 0=0 union select null, version() #
+XSS: <script>alert(1)</script>
+```
+
 ## Build this image
 
 To run this image you need [docker](http://docker.com) installed. Just run the command:
@@ -30,7 +39,7 @@ Just click on the ```Create / Reset database``` button and it will generate any 
 
 Sqreen is preinstalled on this image. To enable it, you simply need to replace the `docker run` command by the following:
 
-	docker run --rm -e SQREEN_TOKEN=org_yourSqreenToken -e SQREEN_APP_NAME=DVWA -p 80:80 dvwa
+	docker run --rm -e SQREEN_TOKEN=org_yourSqreenToken -e SQREEN_APP_NAME=DVWA -p 80:80 sqreen/dvwa:latest
 
 All other instructions are the same.
 
